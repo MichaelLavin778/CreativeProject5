@@ -15,20 +15,20 @@
     <p></p>
     <div class="add">
       <div class="form">
-        Pokemon Name <input v-model="product_name" placeholder="name">
+        Pokemon Name <input v-model="pokemon_name" placeholder="name">
         <p></p>
-        Pokemon Image URL <input v-model="product_URL" placeholder="URL">
-        <button @click="addItem()">Add Pokemon</button>
+        Pokemon Image URL <input v-model="pokemon_URL" placeholder="URL">
+        <button @click="addPoke()">Add Pokemon</button>
         <p></p>
       </div>
     </div>
     <h2>Current Pokemon Listed</h2>
-    <div v-for="item in products">
+    <div v-for="poke in pokemon">
       <p>
-        <button @click="deleteItem(item)">x</button>
-        {{item.title}} - votes {{item.count}}
-        <img width=75 height=75 :src="item.URL" />
-        <button @click="resetCount(item)">reset</button>
+        <button @click="deletePoke(poke)">x</button>
+        {{poke.title}} - votes {{poke.count}}
+        <img width=75 height=75 :src="poke.URL" />
+        <button @click="resetCount(poke)">reset</button>
       </p>
     </div>
   </div>

@@ -17,15 +17,15 @@
   </div>
   <div id="app" class="content">
     <h2>Place your votes below</h2>
-    <div v-for="item in pokemon">
+    <div v-for="poke in pokemon">
       <p>
         <div class="popup" onclick="pop()">
-          <i style="cursor:pointer" @click="vote(item)" class="fa fa-thumbs-up"></i>
+          <i style="cursor:pointer" @click="vote(poke)" class="fa fa-thumbs-up"></i>
           <span class="popuptext" id="myPopup">Only Vote Once!</span>
         </div>
-        {{item.title}}, 
-        <i>votes: {{item.count}}</i>
-        <img height=50 width=50 :src="item.URL" />
+        {{poke.title}}, 
+        <i>votes: {{poke.count}}</i>
+        <img height=50 width=50 :src="poke.URL" />
       </p>
     </div>
   </div>

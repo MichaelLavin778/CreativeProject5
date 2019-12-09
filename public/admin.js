@@ -2,20 +2,19 @@
 var app = new Vue({
   el: '#admin',
    data: {
-    product_name: "",
-    product_price: "",
-    product_URL: "",
-    products: [],
+    pokemon_name: "",
+    pokemon_URL: "",
+    pokemon: [],
   },
   created() {
-    this.getItems();
+    this.getPokemon();
   },
   methods: {
-    async getItems() {
+    async getPokemon() {
       try {
         let response = await axios.get("/api/items");
-        this.products = response.data;
-        this.products.sort(function(a, b) {
+        this.pokemon = response.data;
+        this.pokemon.sort(function(a, b) {
             return b.count - a.count;
         });
         return true;
@@ -23,34 +22,33 @@ var app = new Vue({
         console.log(error);
       }
     },
-    async addItem() {
+    async addPoke() {
       try {
-        let r2 = await axios.post('/api/items', {
-          title: this.product_name,
-          price: this.product_price,
-          URL: this.product_URL,
+        await axios.post('/api/items', {
+          title: this.pokemon_name,
+          URL: this.pokemon_URL,
           count: 0,
         });
-        this.getItems();
+        this.getPokemon();
       } catch (error) {
         console.log(error);
       }
     },
-    async deleteItem(item) {
+    async deletePoke(poke) {
       try {
-        let response = axios.delete("/api/items/" + item._id);
-        this.getItems();
+        axios.delete("/api/items/" + poke._id);
+        this.getPokemon();
         return true;
       } catch (error) {
         console.log(error);
       }
     },
-    async resetCount(item) {
+    async resetCount(poke) {
       try {
-        let response = await axios.put("/api/items/" + item._id, {
+        await axios.put("/api/items/" + poke._id, {
           count: 0
         });
-        this.getItems();
+        this.getPokemon();
         return true;
       } catch (error) {
         console.log(error);

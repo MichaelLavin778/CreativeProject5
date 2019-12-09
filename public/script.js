@@ -3,14 +3,13 @@ var app = new Vue({
   el: '#app',
   data: {
     pokemon: [],
-    cart: [],
     votable: true
   },
   created() {
-    this.getItems();
+    this.getPokemon();
   },
   methods: {
-    async getItems() {
+    async getPokemon() {
       try {
         let response = await axios.get("/api/items");
         this.pokemon = response.data;
@@ -24,13 +23,12 @@ var app = new Vue({
     },
     async vote(item) {
       if (this.votable){
-        // console.log("TRUE")
         this.votable = false;
         try {
-          let response = await axios.put("/api/items/" + item._id, {
+          await axios.put("/api/items/" + item._id, {
             count: item.count + 1
           });
-          this.getItems();
+          this.getPokemon();
           return true;
         } catch (error) {
           console.log(error);
