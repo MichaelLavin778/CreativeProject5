@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/styles.css" />
+  <title>Pokemon Popularity Ranking</title>
+</head>
+
+<body>
+  <div class="header">
+    <div class="title">
+      <h1>The Pokémon</h1>
+    </div>
+  </div>
+  <div id="app" class="content">
+    <h2>Place your votes below</h2>
+    <div v-for="item in pokemon">
+      <p>
+        <div class="popup" onclick="pop()">
+          <i style="cursor:pointer" @click="vote(item)" class="fa fa-thumbs-up"></i>
+          <span class="popuptext" id="myPopup">Only Vote Once!</span>
+        </div>
+        {{item.title}}, 
+        <i>votes: {{item.count}}</i>
+        <img height=50 width=50 :src="item.URL" />
+      </p>
+    </div>
+  </div>
+  <div class="footer">
+    <a href="/admin.html">Control Page</a>
+    <a href="https://github.com/Mimikyu778/CreativeProject5">GitHub Link</a>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
+  <script src="/script.js"></script>
+</body>
+
+</html>
